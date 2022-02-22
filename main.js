@@ -84,12 +84,12 @@ function draw() {
 // click to add radial burst
 function mouseClicked() {
  var x, y, vx, vy, phi, N;
- x = mouseX;
- y = mouseY;
- N = 10;
 
  // Populate with a collection of photons radial from mouse location
  /*
+ x = mouseX;
+ y = mouseY;
+ N = 10;
  for(var i=1; i<N; i++) {
   phi = i*PI/N;
   vx=cos(phi);
@@ -98,13 +98,22 @@ function mouseClicked() {
   photons.push(p);
  }
  */
+
  // drop a vertical collection of photons
- x=width/3;
- y=10;
+ N=10;
+ x=mouseX;
+ y=mouseY;
  vx = 0;
  vy = 1;
- for(var i=1; i<N; i++) {
-  x+=width/N/3;
+
+ p = new Photon(4,color(255,255,255),x,y,vx,vy);
+ photons.push(p);
+
+ for(var i=1; i<N/2; i++) {
+  x=mouseX+i*width/N/3;
+  p = new Photon(4,color(255,255,255),x,y,vx,vy);
+  photons.push(p);
+  x=mouseX-i*width/N/3;
   p = new Photon(4,color(255,255,255),x,y,vx,vy);
   photons.push(p);
  }
